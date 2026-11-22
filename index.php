@@ -17,49 +17,52 @@ $category_list = [
 
 $lots = [
     [
-        'name'     => '2014 Rossignol District Snowboard',
-        'category' => $category_list[0],
-        'price'    => 10999,
-        'picture'  => 'img/lot-1.jpg'
+        'name'          => '2014 Rossignol District Snowboard',
+        'category'      => $category_list[0],
+        'price'         => 10999,
+        'picture_path'  => 'img/lot-1.jpg'
     ],
     [
-        'name'     =>'DC Ply Mens 2016/2017 Snowboard',
-        'category' =>$category_list[0],
-        'price'    => 159999,
-        'picture'  => 'img/lot-2.jpg'
+        'name'          =>'DC Ply Mens 2016/2017 Snowboard',
+        'category'      =>$category_list[0],
+        'price'         => 159999,
+        'picture_path'  => 'img/lot-2.jpg'
     ],
     [
-        'name'     => 'Крепления Union Contact Pro 2015 года размер L/XL',
-        'category' => $category_list[1],
-        'price'    => 8000,
-        'picture'  => 'img/lot-3.jpg'
+        'name'          => 'Крепления Union Contact Pro 2015 года размер L/XL',
+        'category'      => $category_list[1],
+        'price'         => 8000,
+        'picture_path'  => 'img/lot-3.jpg'
     ],
     [
-        'name'     => 'Ботинки для сноуборда DC Mutiny Charcoal',
-        'category' => $category_list[2],
-        'price'    => 10999,
-        'picture'  => 'img/lot-4.jpg'
+        'name'          => 'Ботинки для сноуборда DC Mutiny Charcoal',
+        'category'      => $category_list[2],
+        'price'         => 10999,
+        'picture_path'  => 'img/lot-4.jpg'
     ],
     [
-        'name'     => 'Куртка для сноуборда DC Mutiny Charcoal',
-        'category' => $category_list[3],
-        'price'    => 7500,
-        'picture'  => 'img/lot-5.jpg'
+        'name'          => 'Куртка для сноуборда DC Mutiny Charcoal',
+        'category'      => $category_list[3],
+        'price'         => 7500,
+        'picture_path'  => 'img/lot-5.jpg'
     ],
     [
-        'name'     => 'Маска Oakley Canopy',
-        'category' => $category_list[4],
-        'price'    => 5400,
-        'picture'  => 'img/lot-6.jpg'
+        'name'          => 'Маска Oakley Canopy',
+        'category'      => $category_list[4],
+        'price'         => 5400,
+        'picture_path'  => 'img/lot-6.jpg'
     ]
 ];
 
-function price_form($lot_price)
+function format_price(int $lot_price): string
 {
     $lot_price = ceil($lot_price);
-    if ($lot_price >= 1000)
-    {$lot_price = number_format($lot_price, 0, ' ', ' ');};
-    return ($lot_price . ' ₽');
+
+    if ($lot_price >= 1000) {
+        $lot_price = number_format($lot_price, 0, ' ', ' ');
+    }
+
+    return $lot_price . ' &#8381';
 };
 
 ?>
@@ -133,7 +136,7 @@ function price_form($lot_price)
                 <?php foreach ($lots as $lot): ?>
                     <li class="lots__item lot">
                         <div class="lot__image">
-                            <img src="<?= $lot['picture'] ?>" width="350" height="260" alt="">
+                            <img src="<?= $lot['picture_path'] ?>" width="350" height="260" alt="">
                         </div>
                         <div class="lot__info">
                             <span class="lot__category"><?= $lot['category'] ?></span>
@@ -141,7 +144,7 @@ function price_form($lot_price)
                             <div class="lot__state">
                                 <div class="lot__rate">
                                     <span class="lot__amount">Стартовая цена</span>
-                                    <span class="lot__cost"><?= price_form($lot['price']) ?></span>
+                                    <span class="lot__cost"><?= format_price($lot['price']) ?></span>
                                 </div>
                                 <div class="lot__timer timer">
                                     12:23
