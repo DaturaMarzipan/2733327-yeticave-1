@@ -1,9 +1,16 @@
+<?php
+
+/** @var array $categories */
+/** @var array $lots */
+
+?>
+
 <section class="promo">
     <h2 class="promo__title">Нужен стафф для катки?</h2>
     <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
     <ul class="promo__list">
 
-        <?php foreach ($category_list as $category): ?>
+        <?php foreach ($categories as $category): ?>
             <li class="promo__item promo__item--boards">
                 <a class="promo__link" href="pages/all-lots.html"><?= htmlspecialchars ($category) ?></a>
             </li>
@@ -31,7 +38,9 @@
                             <span class="lot__cost"><?= format_price($lot['price']) ?></span>
                         </div>
                         <div class="lot__timer timer">
-                            12:23
+                            <?php if (count_time($lot['expire_date'])['hours'] === '00'):?>
+                            <span style="color:red;"><?= count_time($lot['expire_date'])['hours'] ?> : <?= count_time($lot['expire_date'])['minutes'] ?></span>
+                            <?php else: print count_time($lot['expire_date'])['hours'] ?> : <?= count_time($lot['expire_date'])['minutes']; endif ?>
                         </div>
                     </div>
                 </div>
